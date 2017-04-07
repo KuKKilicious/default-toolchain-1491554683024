@@ -82,25 +82,41 @@ var appClientConfig = {
     "auth-token" : "Myxg*@x(UM6&t7vGxq"
 }
 var appClient = new Client.IotfApplication(appClientConfig);
-
+var coords="";
 appClient.connect();
 
-appClient.on("connect", function () {
 
-	
-});
 
 appClient.on("connect", function () {
 
-    appClient.subscribeToDeviceEvents("myDeviceType","device01","+","json");
+    appClient.subscribeToDeviceEvents("iot-phone","device01","+","json");
+    
 
 });
 
 appClient.on("deviceEvent", function (deviceType, deviceId, eventType, format, payload) {
 
     console.log("Device Event from :: "+deviceType+" : "+deviceId+" of event "+eventType+" with payload : "+payload);
+    var myData={'name' : 'foo', 'cpu' : 60, 'mem' : 50};
+    myData = JSON.stringify(myData);
+    appClient.publishDeviceEvent("myDeviceType","device01", "myEvent", "json", myData);
+    
+//var x,y,z,xa,ya,za;
+
+//parse json pls
+
+//xyz xaxyxz thresholds.
+
+//done
+
 
 });
+
+
+
+
+
+
 
 
 
